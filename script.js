@@ -45,3 +45,7 @@ function getHumanChoice() {
 getHumanChoice();
 
 console.log(resulth);
+
+//player score tracking
+let humanScore = 0;
+let computerScore = 0;
