@@ -26,7 +26,7 @@ getComputerChoice();
 console.log(resultrsp);
 
 //input
-let choice = prompt("rock, paper, scissors!");
+let choice = prompt("rock, paper, scissors!").toLowerCase();
 //function to return a valid choice
 let resulth;
 
@@ -49,3 +49,68 @@ console.log(resulth);
 //player score tracking
 let humanScore = 0;
 let computerScore = 0;
+//code for a single round
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice == "rock") {
+        switch (computerChoice) {
+            case "rock":
+                console.log("Its a tie! Rock and rock")
+                break;
+            
+            case "paper":
+                console.log("You lose! Paper beats rock")
+                break;
+
+            case "scissors":
+                console.log("You win! Rock beats scissors")
+                break;
+
+            default:
+                console.log("smth went wrong sorry")
+                break;
+        }
+    } else if (humanChoice == "paper") {
+        switch (computerChoice) {
+            case "rock":
+                console.log("You win! Paper beats rock")
+                break;
+            
+            case "paper":
+                console.log("Its a tie! Paper and paper")
+                break;
+
+            case "scissors":
+                console.log("You lose! Scissors beats paper")
+                break;
+
+            default:
+                console.log("smth went wrong sorry")
+                break;
+        } 
+    } else if (humanChoice == "scissors") {
+            switch (computerChoice) {
+                case "rock":
+                    console.log("You lose! Rock beats scissors")
+                    break;
+                
+                case "paper":
+                    console.log("You win! Scissors beats paper")
+                    break;
+    
+                case "scissors":
+                    console.log("Its a tie! Scissors and scissors")
+                    break;
+    
+                default:
+                    console.log("smth went wrong sorry")
+                    break;
+            }
+        } else {
+            console.log("invalid answer")
+        }
+    } 
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+
+playRound(humanSelection, computerSelection);
