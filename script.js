@@ -18,8 +18,8 @@ function getComputerChoice() {
         }
 }
 
-// getComputerChoice();
-// console.log(computerChoice);
+getComputerChoice();
+console.log(computerChoice);
 
 let choiceIntermediate;
 let humanChoice;
@@ -45,9 +45,13 @@ function promptHuman() {
     
 }
 
-promptHuman();
-console.log(humanChoice);
+
+
 
 function getHumanChoice() {
-
+    // promptHuman();
+    return humanChoice;
 }
+
+promptHuman();
+console.log(humanChoice);
