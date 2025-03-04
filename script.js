@@ -1,4 +1,3 @@
-console.log("Hello World!");
 
 let result1;
 
@@ -65,8 +64,90 @@ function getChoices() {
     console.log(`Computer chose ${computerSelection}`);
     }
 
-function playGame() {
-    //score
+function playGame(humanChoiceG) {
+    if (heading.textContent !== "ROCK PAPER SCISSORS") {
+        heading.textContent = "ROCK PAPER SCISSORS"
+    }
+    //single round --> tells who win, who lose, and adds score
+    function playRound(humanChoice, computerChoice) {
+   if (humanChoice === "rock") {
+    switch (computerChoice) {
+        case "rock":
+            resultsDiv.textContent = "It's a tie! Rock and Rock!";
+            scoreNone();
+            break;
+        
+        case "paper":
+            resultsDiv.textContent = "You lose!, Paper beats Rock!";
+            scoreComputer();
+            break;
+        
+        case "scissors":
+            resultsDiv.textContent = "You win!, Rock beats Scissors!"; 
+            scoreHuman();
+            break;
+    }
+   } else if (humanChoice === "paper") {
+    switch (computerChoice) {
+        case "rock":
+            resultsDiv.textContent = "You win!, Paper beats Rock!"
+            scoreHuman();
+            break;
+        
+        case "paper":
+            resultsDiv.textContent = "It's a tie! Paper and Paper!"
+            scoreNone();
+            break;
+        
+        case "scissors":
+            resultsDiv.textContent = "You lose!, Scissors beats Paper!"
+            scoreComputer();
+            break;
+    }
+
+   } else if (humanChoice === "scissors") {
+    switch (computerChoice) {
+        case "rock":
+            resultsDiv.textContent = "You lose!, Rock beats Scissors!"
+            scoreComputer();
+            break;
+        
+        case "paper":
+            resultsDiv.textContent = "You win!, Scissors beats Paper!"
+            scoreHuman();
+            break;
+        
+        case "scissors":
+            resultsDiv.textContent = "It's a tie! Scissors and Scissors!"
+            scoreNone();
+            break;
+    }
+
+   } else {
+    console.log("smth went wrong");
+   }
+
+    }
+    //start game
+    humanSelection = humanChoiceG;
+    huChoice.textContent = `You chose ${humanSelection}!`;
+    getComputerChoice();
+    computerSelection = computerChoice;
+    comChoice.textContent = `Computer chose ${computerSelection}!`;
+    playRound(humanSelection, computerSelection);
+    //append score 
+    disHScore.textContent = `Your score is ${humanScore}`;
+    disCScore.textContent = `Computer score is ${computerScore}`;
+    if (humanScore === 5) {
+        heading.textContent = `GAME OVER, YOU WIN!`
+     reset();
+} else if (computerScore === 5) {
+    heading.textContent = `GAME OVER, YOU LOSE!`
+     reset();
+}
+}
+
+//score
 let humanScore = 0;
 let computerScore = 0;
 
@@ -83,102 +164,34 @@ let computerScore = 0;
     function scoreNone() {
     return console.log(`Current score is ${humanScore} to ${computerScore} `)
     }
-    //single round --> tells who win, who lose, and adds score
-    
 
-    function playRound(humanChoice, computerChoice) {
-   if (humanChoice === "rock") {
-    switch (computerChoice) {
-        case "rock":
-            console.log("It's a tie! Rock and Rock!")
-            scoreNone();
-            break;
-        
-        case "paper":
-            console.log("You lose!, Paper beats Rock!")
-            scoreComputer();
-            break;
-        
-        case "scissors":
-            console.log("You win!, Rock beats Scissors!")
-            scoreHuman();
-            break;
-    }
-   } else if (humanChoice === "paper") {
-    switch (computerChoice) {
-        case "rock":
-            console.log("You win!, Paper beats Rock!")
-            scoreHuman();
-            break;
-        
-        case "paper":
-            console.log("It's a tie! Paper and Paper!")
-            scoreNone();
-            break;
-        
-        case "scissors":
-            console.log("You lose!, Scissors beats Paper!")
-            scoreComputer();
-            break;
-    }
+//UI
+const resultsDiv = document.querySelector("#results");
+const comChoice =  document.querySelector("#computer");
+const huChoice = document.querySelector("#human");
+// console.log(resultDiv);
 
-   } else if (humanChoice === "scissors") {
-    switch (computerChoice) {
-        case "rock":
-            console.log("You lose!, Rock beats Scissors!")
-            scoreComputer();
-            break;
-        
-        case "paper":
-            console.log("You win!, Scissors beats Paper!")
-            scoreHuman();
-            break;
-        
-        case "scissors":
-            console.log("It's a tie! Scissors and Scissors!")
-            scoreNone();
-            break;
-    }
 
-   } else {
-    console.log("smth went wrong");
-   }
 
-    }
-    //start game
-    getChoices();
-    playRound(humanSelection, computerSelection);
+const rockBtn = document.querySelector("#rock");
+const paperBtn = document.querySelector("#paper");
+const scissorsBtn = document.querySelector("#scissors");
 
-    getChoices();
-    playRound(humanSelection, computerSelection);
-    
-    getChoices();
-    playRound(humanSelection, computerSelection);
-    
-    getChoices();
-    playRound(humanSelection, computerSelection);
-    
-    getChoices();
-    playRound(humanSelection, computerSelection);
+rockBtn.addEventListener("click", () => playGame("rock"));
+paperBtn.addEventListener("click",() => playGame("paper"));
+scissorsBtn.addEventListener("click",() => playGame("scissors"));
 
-    if (humanScore > computerScore) {
-        console.log(`Game Over! You Win! Your score is ${humanScore} to ${computerScore}`);
-        playAgain = prompt("Play again? Y/N");
-    } else if (humanScore < computerScore) {
-        console.log(`Game Over! You Lose! Your score is ${humanScore} to ${computerScore}`);
-        playAgain = prompt("Play again? Y/N");
-    } else {
-        console.log(`Game Over! It's a draw! Your score is ${humanScore} to ${computerScore}`)
-        playAgain = prompt("Play again? Y/N");
-    }
+const disHScore = document.querySelector("#human-score");
+const disCScore = document.querySelector('#com-score');
 
-    if (playAgain === "Y") {
-        console.clear();
-        playGame();
-    } else {
-        console.clear();
-    }
+disHScore.textContent = `Your score is ${humanScore}`;
+disCScore.textContent = `Computer score is ${computerScore}`;
+
+function reset() {
+    humanScore = 0;
+    computerScore = 0;
+    disHScore.textContent = `Your score is ${humanScore}`;
+disCScore.textContent = `Computer score is ${computerScore}`;
 }
 
-playGame();
-
+const heading = document.querySelector("h1");

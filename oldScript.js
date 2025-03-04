@@ -182,3 +182,23 @@
 // // console.log(`new human choice is ${humanChoice}`)
 // // console.log(`new computer choice is ${computerChoice}`)
 
+
+// old playgame function stuff
+
+// if (humanScore > computerScore) {
+//     console.log(`Game Over! You Win! Your score is ${humanScore} to ${computerScore}`);
+//     playAgain = prompt("Play again? Y/N");
+// } else if (humanScore < computerScore) {
+//     console.log(`Game Over! You Lose! Your score is ${humanScore} to ${computerScore}`);
+//     playAgain = prompt("Play again? Y/N");
+// } else {
+//     console.log(`Game Over! It's a draw! Your score is ${humanScore} to ${computerScore}`)
+//     playAgain = prompt("Play again? Y/N");
+// }
+
+// if (playAgain === "Y") {
+//     console.clear();
+//     playGame();
+// } else {
+//     console.clear();
+// }
